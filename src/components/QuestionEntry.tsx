@@ -7,7 +7,8 @@ function QuestionEntry(){
     let [correct_answer_index, setCorrectAnswer] = useState<number>(0);
     let [current_answer, setCurrentAnswer] = useState<string>("a");
     let [questions_saved, setQuestionsSaved] = useState<Array<QuestionData>>([]);
-    let [copy_status, setCopyStatus] = useState<String>("Copy to Clipboard");
+    let [copy_status, setCopyStatus] = useState<string>("Copy to Clipboard");
+    let [choice_input, setChoiceInput] = useState<string>("");
 
     // much better fix for finding choices :)
     const choiceIndexDict: {[letter: string] : number} = {'A': 0, 'B': 1, 'C': 2, 'D': 3};
@@ -16,8 +17,9 @@ function QuestionEntry(){
         setQuestion(event.target.value);
     }
 
-    function setCurrentTriviaQuestion(event: ChangeEvent<HTMLSelectElement>){
+    function setCurrentTriviaChoice(event: ChangeEvent<HTMLSelectElement>){
         setCurrentAnswer(event.target.value.toLowerCase());
+        setChoiceInput(choices[event.target.value.toLowerCase() as keyof typeof choices]); // resets the input to the contents of the choice selected
     }
 
     function setTriviaAnswer(event: ChangeEvent<HTMLSelectElement>){
@@ -25,7 +27,8 @@ function QuestionEntry(){
         setCorrectAnswer(choiceIndexDict[event.target.value]);
     }
 
-    function setCurrentQuestion(event: ChangeEvent<HTMLInputElement>){
+    function setCurrentChoice(event: ChangeEvent<HTMLInputElement>){
+        setChoiceInput(event.target.value);
         switch (current_answer){
             case "a":
                 setChoices({...choices, a: event.target.value});
@@ -53,6 +56,7 @@ function QuestionEntry(){
     function resetStates(){
         setQuestion("");
         setCurrentAnswer("a");
+        setChoiceInput("");
     }
 
     function addQuestionToSavedData(){
@@ -78,7 +82,7 @@ function QuestionEntry(){
     }
 
     function deleteEntryFromList(index: number) {
-        // filtered out the element with the matching index
+        // filters out the element with the matching index
         let filteredQuestionList = questions_saved.filter((_, i: number) => {
             index !== i
         });
@@ -103,8 +107,8 @@ function QuestionEntry(){
         <div className="trivia-input-container">
             <h2>Trivia Question Creator for TriviaBot</h2>
             <input type="text" onChange={setTriviaQuestion} value={question} placeholder="Question"/><br />
-            <input type="text" onChange={setCurrentQuestion} placeholder={"Edit answer choice for " + current_answer.toUpperCase()}/>
-            <select onChange={setCurrentTriviaQuestion} value={current_answer.toUpperCase()}>
+            <input type="text" onChange={setCurrentChoice} value={choice_input} placeholder={"Edit answer choice for " + current_answer.toUpperCase()}/>
+            <select onChange={setCurrentTriviaChoice} value={current_answer.toUpperCase()}>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="C">C</option>
