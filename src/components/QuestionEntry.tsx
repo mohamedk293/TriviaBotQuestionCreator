@@ -9,6 +9,9 @@ function QuestionEntry(){
     let [questions_saved, setQuestionsSaved] = useState<Array<QuestionData>>([]);
     let [copy_status, setCopyStatus] = useState<String>("Copy to Clipboard");
 
+    // much better fix for finding choices :)
+    const choiceIndexDict: {[letter: string] : number} = {'A': 0, 'B': 1, 'C': 2, 'D': 3};
+
     function setTriviaQuestion(event: ChangeEvent<HTMLInputElement>){
         setQuestion(event.target.value);
     }
@@ -18,20 +21,8 @@ function QuestionEntry(){
     }
 
     function setTriviaAnswer(event: ChangeEvent<HTMLSelectElement>){
-        switch (event.target.value){
-            case "A":
-                setCorrectAnswer(0);
-                break;
-            case "B":
-                setCorrectAnswer(1);
-                break;
-            case "C":
-                setCorrectAnswer(2);
-                break;
-            case "D":
-                setCorrectAnswer(3);
-                break;
-        }
+        // Updated for better implementation
+        setCorrectAnswer(choiceIndexDict[event.target.value]);
     }
 
     function setCurrentQuestion(event: ChangeEvent<HTMLInputElement>){
