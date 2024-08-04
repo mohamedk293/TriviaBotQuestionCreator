@@ -3,7 +3,7 @@ import Question, {QuestionData} from './Question.tsx';
 // TODO: add an export to json :)
 function QuestionEntry(){
     let [question, setQuestion] = useState<string>("");
-    let [questions, setQuestions] = useState({a: "", b: "", c: "", d: ""});
+    let [choices, setChoices] = useState({a: "", b: "", c: "", d: ""});
     let [correct_answer_index, setCorrectAnswer] = useState<number>(0);
     let [current_answer, setCurrentAnswer] = useState<string>("a");
     let [questions_saved, setQuestionsSaved] = useState<Array<QuestionData>>([]);
@@ -28,16 +28,16 @@ function QuestionEntry(){
     function setCurrentQuestion(event: ChangeEvent<HTMLInputElement>){
         switch (current_answer){
             case "a":
-                setQuestions({...questions, a: event.target.value});
+                setChoices({...choices, a: event.target.value});
                 break;
             case "b":
-                setQuestions({...questions, b: event.target.value});
+                setChoices({...choices, b: event.target.value});
                 break;
             case "c":
-                setQuestions({...questions, c: event.target.value});
+                setChoices({...choices, c: event.target.value});
                 break;
             case "d":
-                setQuestions({...questions, d: event.target.value});
+                setChoices({...choices, d: event.target.value});
                 break;
             default:
                 console.log("incorrect answer choice! something's gone wrong :(");
@@ -47,7 +47,7 @@ function QuestionEntry(){
     }
 
     function getQuestionsAsArray(): Array<string> {
-        return ["A: " + questions.a, "B: " + questions.b, "C: " + questions.c, "D: " + questions.d];
+        return ["A: " + choices.a, "B: " + choices.b, "C: " + choices.c, "D: " + choices.d];
     }
 
     function resetStates(){
@@ -59,7 +59,7 @@ function QuestionEntry(){
         // TODO: decide if resseting states is worth it after clicking.
         let new_question: QuestionData = {
             question: question,
-            questions: getQuestionsAsArray(),
+            choices: getQuestionsAsArray(),
             correct_index: correct_answer_index
         };
         setQuestionsSaved([...questions_saved, new_question]);
@@ -67,10 +67,12 @@ function QuestionEntry(){
     }
 
     function copyJSONtoClipboard(){
+        // Makes the questions saved JSON files with indentations of two spaces
         let json_content = JSON.stringify(questions_saved, undefined, 2);
+
         navigator.clipboard.writeText(json_content);
         setCopyStatus("Copied!");
-        setTimeout(()=>{
+        setTimeout(() => {
             setCopyStatus("Copy to Clipboard");
         }, 1000);
     }
@@ -84,7 +86,7 @@ function QuestionEntry(){
     });
 
     const questionDisplayContainers = questions_saved.map((questionData: QuestionData) =>
-        <li><Question question={questionData.question} questions={questionData.questions} correct_index={questionData.correct_index} /></li>
+        <li><Question question={questionData.question} choices={questionData.choices} correct_index={questionData.correct_index} /></li>
     );
 
     return (
