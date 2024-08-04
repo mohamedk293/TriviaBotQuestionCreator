@@ -13,4 +13,6 @@ Use `npm install` to install necessary dependencies. Once that's done, use `npm 
 - Refactoring, refactoring, and more refactoring... (help)
 - More features that I have not listed here __once the time comes!__
 
-
+### Features implemented so far
+- Question deletion
+- Added question counter to the "Questions" header
