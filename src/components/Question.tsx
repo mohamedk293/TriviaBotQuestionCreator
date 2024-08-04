@@ -5,6 +5,7 @@ export interface QuestionData {
     choices: Array<string>;
     correct_index: number;
 }
+// Updated requirements to successfully add required data to DeleteButton
 export interface IndexedQuestionData extends QuestionData {
     list_index: number;
     click_action: ClickFunction;
