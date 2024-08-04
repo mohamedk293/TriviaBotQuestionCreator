@@ -77,6 +77,14 @@ function QuestionEntry(){
         }, 1000);
     }
 
+    function deleteEntryFromList(index: number) {
+        // filtered out the element with the matching index
+        let filteredQuestionList = questions_saved.filter((_, i: number) => {
+            index !== i
+        });
+        setQuestionsSaved(filteredQuestionList);
+    }
+
     const questionChoiceElements = getQuestionsAsArray().map((question_content: string) => {
         if (question_content[0] == getQuestionsAsArray()[correct_answer_index][0]){
             return <li className="correct-answer">{"Question choice " + question_content}</li>;
@@ -85,8 +93,9 @@ function QuestionEntry(){
         }
     });
 
-    const questionDisplayContainers = questions_saved.map((questionData: QuestionData) =>
-        <li><Question question={questionData.question} choices={questionData.choices} correct_index={questionData.correct_index} /></li>
+    // added indexes so that delete function works :)
+    const questionDisplayContainers = questions_saved.map((questionData: QuestionData, index: number) =>
+        <li><Question question={questionData.question} choices={questionData.choices} correct_index={questionData.correct_index} list_index={index} click_action={deleteEntryFromList}/></li>
     );
 
     return (
@@ -116,7 +125,7 @@ function QuestionEntry(){
             </ul>
             <div><button onClick={addQuestionToSavedData}>Add to Question List</button><button onClick={copyJSONtoClipboard}>{copy_status}</button></div>
         </div>
-        <div className="question-header">Questions</div>
+        <div className="question-header">Questions ({questions_saved.length})</div>
         <div className="saved-questions-container">
             <ul className="question-list">
                 {questionDisplayContainers}
