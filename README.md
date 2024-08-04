@@ -5,7 +5,7 @@ Originally, I had used a CLI tool made in Python to generate questions for my tr
 This was my first time learning React and TypeScript, so expect some bad code. :)
 
 ### How to run?
-You can use `npm run dev` to start a localhost server.
+Use `npm install` to install necessary dependencies. Once that's done, use `npm run dev` to run the react app on a localhost server (the terminal should provide the localhost link for you if you've done everything correctly).
 
 ### Features to be added
 - Deleting a question off the question list.
