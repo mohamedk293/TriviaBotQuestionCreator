@@ -1,0 +1,128 @@
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: white; 
+}
+
+input[type="text"]::placeholder {
+  font-family: Arial, Helvetica, sans-serif;
+  color:white;
+}
+input[type="text"] {
+  background-color:cadetblue;
+  padding: 10px;
+  margin-bottom:0.5em;
+  border: none;
+  border-radius:0.5em;
+  color:white;
+  width: 50%;
+}
+
+p, div {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+select {
+  margin-left: 0.5em;
+  padding: 0.5em;
+  background-color:cadetblue;
+  border-radius: 10px;
+  color: white;
+}
+
+.trivia-input-container {
+  background-color:rgb(25, 58, 114);
+  width: 30em;
+  height: 15em;
+  padding: 0.5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  border-radius: 10px;
+  box-shadow: 0px 5px rgb(16, 30, 91);
+}
+
+body {
+  background-color:rgb(11, 1, 26);
+}
+
+.container {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+.question-display-container {
+  display:flex;
+  flex-direction: column;
+  width: 30em;
+  height: 10em;
+  background-color: rgb(25, 58, 114);
+  box-shadow: 0px 5px rgb(16, 30, 91);
+  border-radius: 10px;
+  margin: 1em;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em;
+  margin-bottom: 1.5em;
+}
+
+.correct-answer {
+  color:rgb(70, 168, 99);
+  font-weight: bold;
+  font-style: oblique;
+}
+
+.question-choices {
+  padding: 0;
+  margin: 0.5em;
+}
+
+button {
+  background-color: cadetblue;
+  border: none;
+  border-radius: 10px;
+  padding: 1em;
+  color: white;
+  font-size: 0.75em;
+  margin: 2px;
+}
+
+.saved-questions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 500%;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2em;
+  width: 25em;
+  height: 8em;
+  padding: 1em;
+  background-color: rgb(55, 118, 150);
+  box-shadow: 0px 5px rgb(25, 58, 114);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.question-list {
+  list-style-type: none;
+  margin:0;
+  padding:0;
+}
+
+.question-title {
+  margin-bottom: 0.5em;
+  font-weight:bold;
+}
+
+.question-header {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-bottom: 0.75em;
+}
